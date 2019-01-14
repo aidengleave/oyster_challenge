@@ -14,7 +14,7 @@ RSpec.describe Oystercard do
     end
 
     it 'Raises an error if balance exceeds £90' do
-      expect{ subject.top_up 91 }.to raise_error "You're over the limit"
+      expect{ subject.top_up Oystercard::LIMIT }.to raise_error "You're over the limit"
     end
 
   end
