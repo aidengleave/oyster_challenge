@@ -13,6 +13,13 @@ context '#top_up' do
     amount = double('some value')
     expect(card.top_up(amount))
   end
+  
+  it 'can be topped up' do
+    card = Oystercard.new
+    amount = 1
+    card.balance
+    expect(card.top_up(amount)).to eq((card.balance) + amount)
+  end
 end
 
 
