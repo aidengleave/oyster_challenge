@@ -18,6 +18,10 @@ RSpec.describe Oystercard do
       expect{ subject.top_up limit }.to raise_error "You're over the limit #{limit}"
     end
 
+    context '#deduct_fare' do
+      it { is_expected.to respond_to(:deduct_fare).with(1).argument }
+    end
+
   end
 
 end
