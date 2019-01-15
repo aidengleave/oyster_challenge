@@ -33,8 +33,9 @@ RSpec.describe Oystercard do
       expect(subject.touch_in).to eq(true)
     end
 
-
-
+    it 'User can touch out' do
+      expect(subject.touch_out).to eq(true)
+    end
 
   end
 
