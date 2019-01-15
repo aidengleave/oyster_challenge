@@ -41,6 +41,11 @@ RSpec.describe Oystercard do
       expect{ subject.touch_in }. to change { subject.journey }.to true
     end
 
+    it 'raises error if insufficient funds' do
+      expect{subject.touch_in}.to raise_error('insufficient funds')
+    end
+
+
   end
 
 
