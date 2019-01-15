@@ -34,7 +34,11 @@ RSpec.describe Oystercard do
     end
 
     it 'User can touch out' do
-      expect(subject.touch_out).to eq(true)
+      expect(subject.touch_out).to eq(false)
+    end
+
+    it 'Touch in changes journey status' do
+      expect{ subject.touch_in }. to change { subject.journey }.to true
     end
 
   end
