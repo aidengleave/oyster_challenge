@@ -6,7 +6,7 @@ RSpec.describe Oystercard do
     expect(card.balance).to eq(0)
   end
 
-  context '#top_up' do
+  describe '#top_up' do
     it { is_expected.to respond_to(:top_up).with(1).argument }
 
     it 'can be topped up' do
@@ -19,12 +19,25 @@ RSpec.describe Oystercard do
     end
   end
 
-  context '#deduct_fare' do
+  describe '#deduct_fare' do
     it { is_expected.to respond_to(:deduct_fare).with(1).argument }
 
     it 'deducts a fare from the balance' do
       expect { subject.deduct_fare 4 }.to change { subject.balance }.by -4
     end
   end
-  
+
+  context 'Card behaviour during the journey' do
+
+    it 'User can touch in' do
+      expect(subject.touch_in).to eq(true)
+    end
+
+
+
+
+  end
+
+
+
 end
