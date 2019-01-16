@@ -29,6 +29,8 @@ class Oystercard
   end
 
   def touch_out(exit_station)
+    @exit_station = exit_station
+    @journeys.store(@starting_station, @exit_station)
     @balance -= MINIMUM_FARE
   
     @starting_station = nil
