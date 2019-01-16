@@ -19,7 +19,7 @@ RSpec.describe Oystercard do
     it 'User can touch out' do
       subject.top_up(2)
       subject.touch_in(:station)
-      expect { subject.touch_out }. to change { subject.journey }.to false
+      expect { subject.touch_out }. to change { subject.starting_station }.to nil
     end
 
     it 'card deducts fare on touch out' do
@@ -31,7 +31,8 @@ RSpec.describe Oystercard do
 
     it 'Touch in changes journey status' do
       subject.top_up(2)
-      expect { subject.touch_in(:station) }. to change { subject.journey }.to true
+      subject.touch_in(:station)
+      expect(subject.starting_station).not_to eq(nil)
     end
 
     it 'raises error if insufficient funds' do
