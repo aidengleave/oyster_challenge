@@ -2,13 +2,14 @@ class Oystercard
   LIMIT = 90
   MINIMUM_FARE = 1
 
-  attr_accessor :balance
+  attr_accessor :balance, :journeys
   attr_reader :starting_station, :exit_station
 
   def initialize(balance = 0)
     @balance = balance
     @starting_station = nil
     @exit_station = nil
+    @journeys = {}
   end
 
   def top_up(amount)
