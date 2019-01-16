@@ -9,6 +9,14 @@ RSpec.describe Oystercard do
     end
   end
 
+  describe '#saved_journeys' do
+    it 'checks that a new card has an empty journey history' do
+      expect(subject.journeys).to be_empty
+    end
+  end
+
+
+
   context 'Card behaviour during the journey' do
     let (:starting_station) {double starting_station}
     let (:exit_station) {double exit_station}
