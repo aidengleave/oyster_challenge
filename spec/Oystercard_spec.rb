@@ -9,14 +9,6 @@ RSpec.describe Oystercard do
     end
   end
 
-  describe '#deduct_fare' do
-    
-    it 'deducts a fare from the balance' do
-      subject.top_up(4)
-      expect { subject.deduct_fare 4 }.to change { subject.balance }.by -4
-    end
-  end
-
   context 'Card behaviour during the journey' do
     it 'User can touch out' do
       subject.top_up(2)
