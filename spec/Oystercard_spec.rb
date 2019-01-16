@@ -10,26 +10,32 @@ RSpec.describe Oystercard do
   end
 
   context 'Card behaviour during the journey' do
+    let (:station) {double starting_station}
+    it 'touch in saves starting station' do
+      subject.top_up(2)
+      expect(subject).to respond_to(:touch_in).with(1).argument
+
+    end
     it 'User can touch out' do
       subject.top_up(2)
-      subject.touch_in
+      subject.touch_in(:station)
       expect { subject.touch_out }. to change { subject.journey }.to false
     end
 
     it 'card deducts fare on touch out' do
       fare = Oystercard::MINIMUM_FARE * -1
       subject.top_up(2)
-      subject.touch_in
+      subject.touch_in(:station)
       expect { subject.touch_out }.to change { subject.balance }.by(fare)      
     end
 
     it 'Touch in changes journey status' do
       subject.top_up(2)
-      expect { subject.touch_in }. to change { subject.journey }.to true
+      expect { subject.touch_in(:station) }. to change { subject.journey }.to true
     end
 
     it 'raises error if insufficient funds' do
-      expect { subject.touch_in }.to raise_error('insufficient funds')
+      expect { subject.touch_in(:station) }.to raise_error('insufficient funds')
     end
   end
 end
