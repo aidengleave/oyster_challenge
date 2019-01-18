@@ -24,7 +24,7 @@ class Oystercard
 
     @journey[:starting_station] = starting_station 
 
-    #@starting_station = starting_station
+    # @starting_station = starting_station
     end
 
   def in_journey?
