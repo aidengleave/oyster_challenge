@@ -17,7 +17,6 @@ RSpec.describe Oystercard do
       expect(subject.journeys).to be_empty
     end
 
-
     it 'checks that initialized card journey is empty' do
       expect(subject.journey).to be_empty
     end
