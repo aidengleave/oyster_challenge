@@ -1,7 +1,7 @@
 require 'Oystercard'
 
 RSpec.describe Oystercard do
-
+    
   describe '#top_up' do
     it 'Raises an error if balance exceeds the limit' do
       limit = Oystercard::LIMIT
@@ -10,48 +10,50 @@ RSpec.describe Oystercard do
   end
 
   describe '#journeys' do
-    let (:starting_station) {double :starting_station}
-    let (:exit_station) {double :exit_station}
-    let (:journeys){ {entry_station: start_station, exit_station: exit_station} }
+    let (:starting_station) { double :starting_station }
+    let (:exit_station) { double :exit_station }
 
     it 'checks that a new card has an empty journey history' do
       expect(subject.journeys).to be_empty
+    end
+
+
+    it 'checks that initialized card journey is empty' do
+      expect(subject.journey).to be_empty
     end
 
     it 'stores entry station' do
       subject.top_up(2)
       subject.touch_in(starting_station)
       subject.touch_out(exit_station)
-      expect(subject.starting_station).to eq starting_station
+      expect(subject.journey[:starting_station]).to eq starting_station
     end
-
 
     it 'stores exit station' do
       subject.top_up(2)
       subject.touch_in(starting_station)
       subject.touch_out(exit_station)
-      expect(subject.exit_station).to eq exit_station
+      expect(subject.journey[:exit_station]).to eq exit_station
     end
 
     # it 'stores start and exit stations as a journey' do
     #   subject.top_up(1)
     #   subject.touch_in(:starting_station)
     #   subject.touch_out(:exit_station)
-    #   expect(subject.journeys).to include({entry: starting_station, exit: exit_station })
+    #   expect(subject.journeys).to include({entry: :starting_station, exit: :exit_station})
 
     # end
   end
 
-
-
   context 'Card behaviour during the journey' do
-    let (:starting_station) {double starting_station}
-    let (:exit_station) {double exit_station}
+    let (:starting_station) { double starting_station }
+    let (:exit_station) { double exit_station }
 
     it 'touch in saves starting station' do
       subject.top_up(2)
       expect(subject).to respond_to(:touch_in).with(1).argument
     end
+    
     it 'touch out saves exit station' do
       expect(subject).to respond_to(:touch_out).with(1).argument
 
